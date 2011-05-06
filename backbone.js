@@ -66,6 +66,22 @@
   //
   Backbone.Events = {
 
+    // Binds all events and their respective callbacks:
+    //
+    //     object.bindAll({
+    //       change: handleChange
+    //       ,add: handleAdd
+    //     })
+    //
+    bindAll : function(callbacks) {
+      for (callback in callbacks) {
+        ev = callback;
+        callback = callbacks[ev];
+        this.bind(ev, callback);
+      }
+      return this;
+    },
+
     // Bind an event, specified by a string name, `ev`, to a `callback` function.
     // Passing `"all"` will bind the callback to all events fired.
     bind : function(ev, callback) {
